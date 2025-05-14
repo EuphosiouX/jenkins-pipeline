@@ -1,5 +1,10 @@
 pipeline { 
     agent any 
+    environment { 
+        DIRECTORY_PATH = '/code'                 // Change to actual path 
+        TESTING_ENVIRONMENT = 'staging' 
+        PRODUCTION_ENVIRONMENT = 'Michael'                    
+    } 
     stages { 
         stage('Build') { 
             steps { 
