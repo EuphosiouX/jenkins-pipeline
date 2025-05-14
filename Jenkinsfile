@@ -44,5 +44,11 @@ pipeline {
                 echo "Deploying the application to the production environment: ${env.PRODUCTION_ENVIRONMENT}" 
             } 
         } 
+        
+        stage('Complete') { 
+            steps { 
+                echo "Completed" 
+            } 
+        } 
     } 
 } 
