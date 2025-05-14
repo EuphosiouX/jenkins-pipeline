@@ -1,54 +1,48 @@
 pipeline { 
     agent any 
-    environment { 
-        DIRECTORY_PATH = '/code'                 // Change to actual path 
-        TESTING_ENVIRONMENT = 'staging' 
-        PRODUCTION_ENVIRONMENT = 'Michael'                    
-    } 
     stages { 
         stage('Build') { 
             steps { 
-                echo "Fetch the source code from the directory path specified by the environment variable: ${env.DIRECTORY_PATH}" 
-                echo "Compile the code and generate any necessary artefacts" 
+                echo "Build the application using a build automation tool like Maven "
+                echo "Compile and package the application code" 
             } 
         } 
  
-        stage('Test') { 
+        stage('Unit and Integration Tests') { 
             steps { 
-                echo 'Unit tests' 
-                echo 'Integration tests' 
+                echo 'Run unit tests using JUnit' 
+                echo 'Run integration tests to verify component interaction' 
             } 
         } 
  
-        stage('Code Quality Check') { 
+        stage('Code Analysis') { 
             steps { 
-                echo 'Check the quality of the code' 
+                echo 'Analyze code quality using SonarQube to ensure industry standards' 
             } 
         } 
  
-        stage('Deploy') { 
+        stage('Security Scan') { 
             steps { 
-                echo "Deploy the application to a testing environment specified by the environment variable: ${env.TESTING_ENVIRONMENT}" 
+                echo 'Perform a security scan using OWASP Dependency-Check' 
             } 
         } 
  
-        stage('Approval') { 
+        stage('Deploy to Staging') { 
             steps { 
-                echo 'Waiting for approval...' 
-                sleep time: 10, unit: 'SECONDS' 
+                echo "Deploy the application to the staging servern in AWS EC2 instance" 
+            } 
+        } 
+ 
+        stage('Integration Tests on Staging') { 
+            steps { 
+                echo 'Run integration or end-to-end tests using tools like Selenium' 
             } 
         } 
  
         stage('Deploy to Production') { 
             steps { 
-                echo "Deploying the application to the production environment: ${env.PRODUCTION_ENVIRONMENT}" 
-            } 
-        } 
-        
-        stage('Complete') { 
-            steps { 
-                echo "Completed" 
+                echo "Deploy the application to the production environment in AWS EC2 instance" 
             } 
         } 
     } 
-} 
+}
